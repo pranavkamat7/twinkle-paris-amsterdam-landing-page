@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paris & Amsterdam Diaries with Twinkle | 5 Nights, 6 Days, 2 Countries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f7f1ea;
+      --paper: #fffdfa;
+      --paper-2: #fff8f3;
+      --dark: #0f0c09;
+      --ink: #191613;
+      --muted: #6d635c;
+      --faint: #a99f97;
+      --line: rgba(25, 22, 19, .08);
+      --line-med: rgba(25, 22, 19, .13);
+      --rose: #bf7658;
+      --rose-dark: #a55e40;
+      --rose-soft: #f5e4db;
+      --gold: #c6a14f;
+      --gold-soft: #f7efdc;
+      --olive: #7d7a65;
+      --radius: 22px;
+      --radius-lg: 30px;
+      --max: 1180px;
+      --text-max: 820px;
+      --shadow: 0 10px 35px rgba(15, 12, 9, .07);
+      --shadow-lg: 0 24px 70px rgba(15, 12, 9, .12);
+      --shadow-xl: 0 35px 100px rgba(15, 12, 9, .16);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,.75), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #f6efe7 100%);
+      color: var(--ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; line-height: 1.04; letter-spacing: -0.02em; }
+    .wrap { width: min(100% - 28px, var(--max)); margin: 0 auto; }
+    .text-wrap { width: min(100%, var(--text-max)); margin-left: auto; margin-right: auto; }
+    .section { padding: 10px 0; }
+    main { padding: 6px 0 130px; overflow-x: hidden; }
+
+    /* sticky bar */
+    .sticky-bar {
+      position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 300;
+      padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,252,248,.82);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(15,12,9,.14);
+      transform: translateY(130%);
+      transition: transform .45s cubic-bezier(.16,1,.3,1);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-left { min-width: 0; flex: 1; }
+    .sticky-price { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1; color: var(--ink); margin-bottom: 3px; }
+    .sticky-note { font-size: 12px; color: var(--muted); }
+    .sticky-btn {
+      flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 20px; border-radius: 14px;
+      background: linear-gradient(180deg, #ca8162 0%, #b56c4f 100%);
+      color: #fff; font-size: 14px; font-weight: 600;
+      box-shadow: 0 12px 28px rgba(191,118,88,.32);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .sticky-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(191,118,88,.42); }
+
+    /* hero */
+    .hero {
+      position: relative; min-height: 100svh; display: flex; align-items: center;
+      overflow: hidden; color: #fff; isolation: isolate;
+    }
+    .hero-media {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(9,8,8,.15) 0%, rgba(9,8,8,.20) 38%, rgba(9,8,8,.70) 82%, rgba(9,8,8,.88) 100%),
+        url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fm=jpg&fit=crop&w=1600&q=85') center 40%/cover no-repeat;
+      transform: scale(1.02);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background:
+        radial-gradient(circle at 15% 18%, rgba(255,220,195,.18), transparent 22%),
+        radial-gradient(circle at 82% 15%, rgba(255,255,255,.09), transparent 20%);
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+    .hero-content { position: relative; z-index: 2; width: 100%; padding: 34px 0 40px; }
+
+    .hero-right-block {
+      position: absolute; top: 30px; right: 50px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; z-index: 3; width: 360px;
+    }
+    .hero-right-block .hero-glass { width: 100%; margin: 0; }
+
+    .hero-glass {
+      width: min(100%, 480px); border-radius: 28px; padding: 20px;
+      background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(18px) saturate(1.1);
+      -webkit-backdrop-filter: blur(18px) saturate(1.1);
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
+    }
+    .hero-stats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .h-stat {
+      min-width: 0; padding: 14px; border-radius: 16px;
+      background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.13);
+      color: #fff; text-align: center;
+    }
+    .h-stat strong { display: block; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.58); margin-bottom: 3px; }
+    .h-stat span { display: block; font-size: 14px; font-weight: 600; line-height: 1.35; }
+
+    .urgency {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 14px; border-radius: 999px;
+      background: rgba(198,161,79,.16); border: 1px solid rgba(198,161,79,.35);
+      color: #f2dc9a; font-size: 12px; font-weight: 600; backdrop-filter: blur(10px);
+    }
+    .urgency-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #f2dc9a;
+      animation: blink 1.8s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.45; transform:scale(.7); } }
+
+    .eyebrow { display: block; margin-bottom: 14px; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.68); }
+    .hero h1 { font-size: clamp(48px, 9vw, 98px); font-weight: 400; max-width: 8ch; margin: 0 0 18px; text-shadow: 0 8px 30px rgba(0,0,0,.25); }
+    .hero h1 em { font-style: italic; color: #f4cfbf; }
+    .hero-lead { max-width: 42ch; font-size: clamp(15px, 2vw, 17px); line-height: 1.75; color: rgba(255,255,255,.88); font-weight: 300; margin-bottom: 26px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 8px; }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 17px 28px; border-radius: 16px;
+      background: linear-gradient(180deg, #cb8566 0%, #ff6f31 100%);
+      color: #fff; border: 0; cursor: pointer; font-weight: 600; font-size: 16px;
+      box-shadow: 0 18px 50px rgba(196,122,90,.35);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 24px 58px rgba(196,122,90,.42); }
+    .hero-sub-note { font-size: 13px; color: rgba(255,255,255,.72); }
+    .hero-copy { text-align: left; max-width: 560px; margin: 0; }
+
+    /* photo strip */
+    .strip-wrap { padding: 26px 0 8px; overflow: hidden; }
+    .photo-strip { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 14px; }
+    .strip-photo { position: relative; overflow: hidden; border-radius: 20px; aspect-ratio: 3/4; background: #eae1d8; box-shadow: var(--shadow); }
+    .strip-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .strip-photo:hover img { transform: scale(1.05); }
+    .strip-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%); }
+    .strip-label { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 1; color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .03em; text-align: center; }
+
+    /* cards */
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(255,252,248,.98) 100%);
+      border: 1px solid var(--line-med);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 0 auto auto 0; width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(191,118,88,.22), transparent);
+      pointer-events: none;
+    }
+    .kicker { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--rose); margin-bottom: 10px; }
+    .section-title { font-size: clamp(28px, 5vw, 40px); margin-bottom: 10px; font-weight: 400; }
+    .section-desc { color: var(--muted); font-size: 15px; line-height: 1.8; font-weight: 300; }
+
+    /* itinerary */
+    .days { display: grid; gap: 14px; margin-top: 22px; }
+    .day { background: rgba(255,255,255,.96); border: 1px solid var(--line-med); border-radius: 26px; overflow: hidden; box-shadow: var(--shadow); transition: transform .22s ease, box-shadow .22s ease; }
+    .day:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .day-img { width: 100%; height: 280px; object-fit: cover; object-position: center center; }
+    .day-body { padding: 22px; text-align: center; }
+    .day-num { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 8px; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rose); }
+    .day-num::after { content: ''; flex: 1; height: 1px; background: rgba(191,118,88,.24); max-width: 60px; }
+    .day-num::before { content: ''; flex: 1; height: 1px; background: rgba(191,118,88,.24); max-width: 60px; }
+    .day-title { font-size: 26px; font-weight: 400; margin-bottom: 10px; }
+    .day-desc { color: var(--muted); font-size: 14px; line-height: 1.8; font-weight: 300; }
+    .day-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; }
+    .tag { padding: 6px 12px; border-radius: 999px; background: var(--rose-soft); color: var(--rose-dark); font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+
+    /* pricing */
+    .price-card { background: linear-gradient(145deg, #fff8f3 0%, #fffdfa 62%, #fef7f1 100%); border: 1.5px solid rgba(191,118,88,.18); }
+    .price-card::after { content: ''; position: absolute; width: 240px; height: 240px; border-radius: 50%; right: -80px; top: -80px; background: radial-gradient(circle, rgba(191,118,88,.12) 0%, transparent 70%); pointer-events: none; }
+    .price-badge { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); border: 1px solid rgba(198,161,79,.24); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 14px; justify-content: center; margin-left: auto; margin-right: auto; }
+    .price-big { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 10px; margin: 8px 0 18px; }
+    .price-num { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 8vw, 64px); line-height: 1; }
+    .price-per { font-size: 13px; color: var(--muted); line-height: 1.5; padding-bottom: 8px; font-weight: 300; }
+    .tax-note { font-size: 12px; color: var(--faint); margin-bottom: 20px; text-align: center; }
+    .includes { list-style: none; display: grid; gap: 9px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .includes li { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 16px; background: #fff; border: 1px solid var(--line); font-size: 14px; color: var(--ink); text-align: left; }
+    .includes .ico { font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 1px; }
+    .excludes { margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: var(--paper-2); border: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* form */
+    .form-section { background: linear-gradient(145deg, #fff8f3 0%, #fffdfa 100%); border: 1.5px solid rgba(191,118,88,.18); }
+    .form-section::after { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, var(--rose), var(--gold), var(--rose)); }
+    .zoho-wrap { width: 100%; overflow: hidden; border-radius: 22px; border: 1px solid rgba(25,22,19,.08); background: #fff; box-shadow: 0 18px 40px rgba(15,12,9,.08); }
+    .zoho-wrap iframe { display: block; width: 100%; min-width: 100%; border: none; height: 980px; background: #fff; }
+
+    /* footer */
+    footer { padding: 26px 0 52px; text-align: center; }
+    .footer-brand { font-family: 'DM Serif Display', serif; font-size: 24px; margin-bottom: 8px; }
+    .footer-byline { margin-top: 16px; font-size: 11px; color: var(--faint); letter-spacing: .03em; }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* pack grid */
+    .pack-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line-med); border-radius: 16px; overflow: hidden; margin-bottom: 60px; }
+    .pack-card { padding: 36px 32px; border-right: 1px solid var(--line-med); border-bottom: 1px solid var(--line-med); background: #fff; transition: background .2s ease; }
+    .pack-card:hover { background: #fdf9f6; }
+    .pack-card:nth-child(3n) { border-right: none; }
+    .pack-card:nth-child(n+4) { border-bottom: none; }
+    .pack-card--dark { background: #0f0c09; color: #fff; }
+    .pack-card--dark:hover { background: #1a1410; }
+    .pack-icon { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(191,118,88,.3); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; color: var(--rose); }
+    .pack-card--dark .pack-icon { border-color: rgba(255,255,255,.15); color: rgba(255,255,255,.6); }
+    .pack-title { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--ink); line-height: 1.2; }
+    .pack-card--dark .pack-title { color: #fff; }
+    .pack-body { font-size: 14px; line-height: 1.75; color: var(--muted); font-weight: 300; }
+    .pack-card--dark .pack-body { color: rgba(255,255,255,.5); }
+
+    /* timeline */
+    .timeline-wrap { position: relative; padding-bottom: 80px; }
+    .timeline-line { position: absolute; top: 22px; left: calc(100% / 8); right: calc(100% / 8); height: 1px; background: rgba(191,118,88,.35); z-index: 0; }
+    .timeline-steps { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; z-index: 1; }
+    .timeline-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; }
+    .tl-dot { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(191,118,88,.3); background: #f7f1ea; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 400; color: var(--rose); margin-bottom: 28px; position: relative; z-index: 1; flex-shrink: 0; }
+    .tl-title { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .tl-desc { font-size: 13px; line-height: 1.75; color: var(--muted); font-weight: 300; max-width: 22ch; }
+    .mobile-steps { display: none; }
+
+    /* host section */
+    .host-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; padding-bottom: 70px; }
+    .host-photo-col { position: relative; }
+    .host-ig-badge { position: absolute; left: 350px; bottom: -20px; display: block; background: #111009; color: #fff; padding: 18px 24px; border-radius: 14px; text-decoration: none; box-shadow: 0 18px 50px rgba(0,0,0,.25); min-width: 210px; }
+    .host-text-col { padding: 10px 0; }
+
+    /* responsive */
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 20px, var(--max)); }
+      .card { padding: 24px 18px; border-radius: 24px; }
+      .photo-strip { display: flex; gap: 12px; overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; scrollbar-width: none; -ms-overflow-style: none; scroll-snap-type: x mandatory; }
+      .photo-strip::-webkit-scrollbar { display: none; }
+      .strip-photo { flex: 0 0 72%; scroll-snap-align: start; }
+      .day { display: block; }
+      .day-img { height: 220px; }
+      .hero-content { padding: 26px 0 40px; }
+      .sticky-bar { left: 10px; right: 10px; bottom: 10px; padding: 12px 12px; gap: 10px; }
+      .sticky-price { font-size: 20px; }
+      .sticky-btn { padding: 12px 16px; font-size: 13px; }
+      .zoho-wrap iframe { height: 1120px; }
+      .pack-grid { grid-template-columns: 1fr 1fr; }
+      .pack-card:nth-child(3n) { border-right: 1px solid var(--line-med); }
+      .pack-card:nth-child(2n) { border-right: none; }
+      .pack-card:nth-child(n+4) { border-bottom: 1px solid var(--line-med); }
+      .pack-card:nth-child(n+5) { border-bottom: none; }
+      .pack-card { padding: 24px 20px; }
+      .pack-title { font-size: 18px; }
+      .host-grid { grid-template-columns: 1fr; gap: 30px; }
+      .host-ig-badge { left: 0; bottom: 20px; }
+      .hero-content .wrap { display: flex; flex-direction: column; justify-content: flex-end; min-height: 100svh; padding-bottom: 80px; gap: 20px; }
+      .hero-right-block { position: static; width: 100%; align-items: flex-start; }
+      .hero-right-block .hero-glass { width: 100%; max-width: 100%; }
+      .hero-right-block .hero-stats { grid-template-columns: repeat(2, 1fr); }
+      .hero-right-block .h-stat { padding: 10px 12px; }
+      .hero-right-block { order: 1; }
+      .hero-copy { order: 2; max-width: 100% !important; text-align: left; }
+      .hero-right-block .urgency { align-self: center; }
+      .hero h1 { font-size: clamp(40px, 11vw, 72px); }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary { width: 100%; text-align: center; }
+      .hero-sub-note { text-align: center; }
+    }
+    @media (max-width: 640px) {
+      .timeline-wrap { display: none; }
+      .mobile-steps { display: flex; flex-direction: column; padding-bottom: 60px; }
+      .mobile-step { display: flex; gap: 20px; align-items: flex-start; }
+      .mobile-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+      .mobile-connector { width: 1px; flex: 1; min-height: 40px; background: rgba(191,118,88,.3); margin: 6px 0; }
+      .mobile-step-body { padding-top: 10px; padding-bottom: 32px; }
+      .mobile-step--last .mobile-step-body { padding-bottom: 0; }
+      .mobile-steps .tl-dot { margin-bottom: 0; }
+      .mobile-steps .tl-title { font-size: 18px; margin-bottom: 6px; }
+      .mobile-steps .tl-desc { max-width: none; font-size: 14px; }
+    }
+    @media (max-width: 520px) {
+      .hero h1 { max-width: 7ch; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .h-stat { padding: 12px; }
+      .strip-photo { flex: 0 0 82%; }
+      .btn-primary { width: 100%; }
+      .hero-actions { align-items: stretch; }
+      .sticky-bar { align-items: center; }
+      .sticky-note { font-size: 11px; }
+      .zoho-wrap iframe { height: 1200px; }
+    }
+    @media (max-width: 480px) {
+      .pack-grid { grid-template-columns: 1fr; }
+      .pack-card { border-right: none !important; border-bottom: 1px solid var(--line-med) !important; }
+      .pack-card:last-child { border-bottom: none !important; }
+    }
+    @media (max-width: 400px) {
+      .hero-right-block .h-stat span { font-size: 13px; }
+      .hero-right-block .h-stat strong { font-size: 9px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="sticky-bar" id="stickyCta">
+    <div class="sticky-left">
+      <div class="sticky-price">₹1,95,999</div>
+      <div class="sticky-note">Per person | Twin sharing | All inclusive</div>
+    </div>
+    <a href="#apply" class="sticky-btn">Book my spot</a>
+  </div>
+
+  <header class="hero" id="heroTop">
+    <div class="hero-media"></div>
+    <div class="hero-content">
+      <div class="wrap">
+
+        <div class="hero-right-block">
+          <div class="hero-glass">
+            <div class="hero-stats">
+              <div class="h-stat">
+                <strong>Duration</strong>
+                <span>5 Nights | 6 Days</span>
+              </div>
+              <div class="h-stat">
+                <strong>Countries</strong>
+                <span>Netherlands · Belgium · France</span>
+              </div>
+              <div class="h-stat">
+                <strong>Departs</strong>
+                <span>2026 — Dates TBC</span>
+              </div>
+              <div class="h-stat">
+                <strong>Price</strong>
+                <span>₹1.95L all inclusive</span>
+              </div>
+            </div>
+          </div>
+          <div class="urgency" style="margin:0;">
+            <span class="urgency-dot"></span>
+            Limited seats — register your interest now
+          </div>
+        </div>
+
+        <div class="hero-copy" style="max-width:560px;">
+          <span class="eyebrow">Paris & Amsterdam Diaries</span>
+          <h1>Europe With <em>Twinkle.</em></h1>
+          <p class="hero-lead">6 days. Windmills, canals, Bruges cobblestones, the Eiffel Tower, and everything in between — with someone who actually knows how to have fun doing it.</p>
+          <div class="hero-actions">
+            <a href="#apply" class="btn-primary">I want in</a>
+            <div class="hero-sub-note">Fashion. Fitness. Travel. For real, this time.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <div class="strip-wrap">
+    <div class="wrap">
+      <div class="photo-strip">
+        <div class="strip-photo">
+          <img src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?fm=jpg&fit=crop&w=700&q=80" alt="Amsterdam" loading="lazy">
+          <span class="strip-label">Amsterdam</span>
+        </div>
+        <div class="strip-photo">
+          <img src="https://res.klook.com/image/upload/w_750,h_469,c_fill,q_85/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/jjgwrt0joyjd3ak2y32n.jpg" alt="Zaanse Schans" loading="lazy">
+          <span class="strip-label">Zaanse Schans</span>
+        </div>
+        <div class="strip-photo">
+          <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?fm=jpg&fit=crop&w=700&q=80" alt="Bruges" loading="lazy">
+          <span class="strip-label">Bruges</span>
+        </div>
+        <div class="strip-photo">
+          <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?fm=jpg&fit=crop&w=700&q=80" alt="Paris" loading="lazy">
+          <span class="strip-label">Paris</span>
+        </div>
+        <div class="strip-photo">
+          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?fm=jpg&fit=crop&w=700&q=80" alt="Eiffel Tower" loading="lazy">
+          <span class="strip-label">Eiffel Tower</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="section reveal" id="meet-twinkle">
+    <div class="wrap">
+      <div style="padding: 50px 0 40px;">
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+          <span style="font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--rose);">Your Trip Host</span>
+        </div>
+        <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(38px,5.5vw,60px); font-weight:400; line-height:1.1; letter-spacing:-0.02em; color:var(--ink);">
+          Travel with someone<br>who makes the <em style="font-style:italic; color:var(--rose);">whole thing fun</em>
+        </h2>
+      </div>
+
+      <div class="host-grid">
+        <div class="host-photo-col">
+          <div style="aspect-ratio:3/4; border-radius:24px; overflow:hidden; background:#e8ddd4; box-shadow:var(--shadow-lg); position:relative;">
+            <img src="twinkle.jpg" alt="Twinkle R Vasisht Tuli" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
+          </div>
+          <a href="https://www.instagram.com/twinkle_vasisht/" target="_blank" rel="noopener" class="host-ig-badge">
+            <div style="font-family:'DM Serif Display',serif; font-size:22px; color:#c9a55a; margin-bottom:5px;">@twinkle_vasisht</div>
+            <div style="font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.45);">Follow on Instagram</div>
+          </a>
+        </div>
+
+        <div class="host-text-col">
+          <p style="font-size:16px; line-height:1.9; color:var(--ink); margin-bottom:22px; font-weight:300;">
+            Hi, I'm <strong style="font-weight:700;">Twinkle</strong> — actress, model, beauty pageant queen (Miss Ahmedabad, Miss Vogue, the list goes on), fitness enthusiast, gamer girl, and a proud dog-and-cat mum. Known for <em>Kundali Bhagya</em>, but honestly more obsessed with luxury travel and a great fit. 750K people follow along for the fashion, the fitness, and the wanderlust. Now you get to live it with me.
+          </p>
+
+          <p style="font-size:16px; line-height:1.9; color:var(--ink); margin-bottom:22px; font-weight:300;">
+            I've partnered with Akbar Holidays — one of India's most trusted outbound travel brands with 20+ years of Europe expertise — so every detail is locked in before you even think about packing. <strong style="font-weight:700;">Flights, hotels, visa, every sightseeing stop — sorted. You just show up.</strong>
+          </p>
+
+          <p style="font-size:16px; line-height:1.9; color:var(--ink); margin-bottom:28px; font-weight:300;">
+            6 days between two of the world's most iconic cities — Amsterdam's canals, the medieval magic of Bruges, Montmartre, the Eiffel Tower lit up at night. It's going to be very well-dressed, very well-fed, and completely Twinkle.
+          </p>
+
+          <a href="https://www.instagram.com/twinkle_vasisht/" target="_blank" rel="noopener"
+            style="display:inline-flex; align-items:center; gap:8px; color:var(--rose); font-size:14px; font-weight:600; text-decoration:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+            @twinkle_vasisht →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="text-wrap">
+          <span class="kicker" style="display:flex;justify-content:center;">The itinerary</span>
+          <h2 class="section-title" style="text-align:center;">6 days, city by city.</h2>
+          <p class="section-desc" style="text-align:center;margin-bottom:0;">
+            2 countries, 3 cities, zero fuss. Amsterdam to Bruges to Paris — the most cinematic route in Western Europe, done properly.
+          </p>
+        </div>
+
+        <div class="days">
+
+          <!-- Day 01 -->
+          <div class="day">
+            <img class="day-img" src="https://images.unsplash.com/photo-1534351590666-13e3e96b5017?fm=jpg&fit=crop&w=1200&q=80" alt="Amsterdam" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 01</div>
+              <div class="day-title">Arrive in Amsterdam</div>
+              <p class="day-desc">Land at Schiphol, transfer to the hotel, and take the afternoon at your own pace. Amsterdam doesn't need to be rushed — but even a first evening walk along the canals will tell you exactly why you chose to come here. The tour briefing is at hotel reception. Tomorrow, we go properly.</p>
+              <div class="day-tags">
+                <span class="tag">Arrival</span>
+                <span class="tag">Hotel check in</span>
+                <span class="tag">Free evening</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 02 -->
+          <div class="day">
+            <img class="day-img" src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Volendam_harbour_-_panoramio.jpg" alt="Zaanse Schans" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 02</div>
+              <div class="day-title">Amsterdam city tour, Zaanse Schans & Volendam</div>
+              <p class="day-desc">The full Amsterdam experience: Zaanse Schans with its iconic windmills and wooden houses, the fishing village of Volendam on the Markermeer, and a diamond demo in the city. End the day with a transfer to the lively city centre where dinner choices are genuinely excellent. This is the day your camera roll starts filling up fast.</p>
+              <div class="day-tags">
+                <span class="tag">Zaanse Schans</span>
+                <span class="tag">Volendam</span>
+                <span class="tag">Diamond demo</span>
+                <span class="tag">City centre</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 03 -->
+          <div class="day">
+            <img class="day-img" src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?fm=jpg&fit=crop&w=1200&q=80" alt="Bruges" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 03</div>
+              <div class="day-title">Bruges & Ghent day trip, arrive in Paris</div>
+              <p class="day-desc">Full-day through medieval Belgium before Paris. Ghent's Castle of the Counts and St. Bavo's Cathedral, then Bruges — the "Venice of the North" — with its cobblestone Market Square and the Basilica of the Holy Blood. Belgian chocolate is mandatory. Then we drive to Paris. You arrive, step out onto a Parisian street, and immediately get it.</p>
+              <div class="day-tags">
+                <span class="tag">Bruges</span>
+                <span class="tag">Ghent</span>
+                <span class="tag">Belgian chocolate</span>
+                <span class="tag">Paris arrival</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 04 -->
+          <div class="day">
+            <img class="day-img" src="https://images.contentstack.io/v3/assets/blt06f605a34f1194ff/blt98b14b2bab9f9b6a/6620ee1b33301d4a5588f6db/BCC-2023-EXPLORER-PARIS-MONTMARTRE-PARIS-Header-MOBILE.jpg?format=webp&quality=60&width=1440" alt="Versailles Montmartre Paris" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 04</div>
+              <div class="day-title">Versailles, Montmartre & Paris city tour</div>
+              <p class="day-desc">The Palace of Versailles in the morning — genuinely one of the most over-the-top beautiful things you'll ever walk through. Then Montmartre by cable car, the artists' quarter, the Sacré-Cœur at the top of the hill, and the city views that make Paris feel like it was designed to be looked at from above. Optional: an evening show. Worth considering.</p>
+              <div class="day-tags">
+                <span class="tag">Versailles</span>
+                <span class="tag">Montmartre</span>
+                <span class="tag">Cable car</span>
+                <span class="tag">Sacré-Cœur</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 05 -->
+          <div class="day">
+            <img class="day-img" src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?fm=jpg&fit=crop&w=1200&q=80" alt="Eiffel Tower Seine" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 05</div>
+              <div class="day-title">Eiffel Tower & Seine cruise</div>
+              <p class="day-desc">Up to the second floor of the Eiffel Tower — tickets included, views life-changing. Then the Seine cruise, drifting past Notre-Dame, the Louvre, Pont Neuf. The afternoon is yours: the Champs-Élysées for shopping, a café for sitting, or just more wandering. Paris rewards a slow afternoon. The last evening as a group — Twinkle's pick for dinner. Trust the recommendation.</p>
+              <div class="day-tags">
+                <span class="tag">Eiffel Tower</span>
+                <span class="tag">Seine cruise</span>
+                <span class="tag">Free afternoon</span>
+                <span class="tag">Group dinner</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 06 -->
+          <div class="day">
+            <img class="day-img" src="https://images.unsplash.com/photo-1550340499-a6c60fc8287c?fm=jpg&fit=crop&w=1200&q=80" alt="Departure" loading="lazy">
+            <div class="day-body">
+              <div class="day-num">Day 06</div>
+              <div class="day-title">Fly home from Paris</div>
+              <p class="day-desc">Last breakfast in Paris. Check out. Airport. You board with a very full camera roll, an unfair amount of French pastry knowledge, and the kind of trip that gets brought up in conversation for years. Six days was enough to fall in love. Next time, longer.</p>
+              <div class="day-tags">
+                <span class="tag">Departure</span>
+                <span class="tag">Last breakfast</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div class="card price-card text-wrap">
+          <span class="kicker" style="display:flex;justify-content:center;">Pricing</span>
+          <div class="price-badge">Everything included</div>
+          <p style="font-size:13px;color:var(--muted);font-weight:300;text-align:center;">One number. No fine print. No surprises when you land.</p>
+
+          <div class="price-big">
+            <div class="price-num">₹1,95,999</div>
+            <div class="price-per">per adult<br>twin sharing</div>
+          </div>
+
+          <p class="tax-note">GST and TCS at actuals</p>
+
+          <ul class="includes">
+            <li><span class="ico">✈️</span><span>Return economy airfare from Mumbai, Delhi, Hyderabad and Bangalore</span></li>
+            <li><span class="ico">🏨</span><span>4 star hotel stay throughout — Amsterdam and Paris, every night sorted</span></li>
+            <li><span class="ico">🍽️</span><span>Daily breakfast and Indian dinners with Jain, Veg and Non Veg options</span></li>
+            <li><span class="ico">🗺️</span><span>Schengen visa charges fully included</span></li>
+            <li><span class="ico">🚌</span><span>AC coach transfers across Amsterdam, Bruges, Ghent and Paris</span></li>
+            <li><span class="ico">👤</span><span>Professional tour manager with the group throughout</span></li>
+          </ul>
+
+          <div class="excludes">
+            <strong>Not included:</strong> GST and TCS at actuals | Driver tips | Personal expenses | Optional upgrades
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div style="padding: 60px 0 40px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--rose);">Everything Handled</span>
+          </div>
+          <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(36px,6vw,62px); font-weight:400; line-height:1.08; letter-spacing:-0.02em; color:var(--ink);">
+            You just <em style="font-family:'DM Serif Display',serif; font-style:italic; color:var(--rose);">pack your bags</em>
+          </h2>
+        </div>
+
+        <div class="pack-grid">
+          <div class="pack-card pack-card--dark">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
+              </svg>
+            </div>
+            <div class="pack-title">Flights & Visa</div>
+            <div class="pack-body">Return economy airfare from 4 Indian cities. Schengen visa documentation fully guided — no research rabbit holes for you.</div>
+          </div>
+          <div class="pack-card">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
+            <div class="pack-title">4-Star Hotels</div>
+            <div class="pack-body">Well-located 4-star hotels in Amsterdam and Paris. Breakfast every morning. The kind of stay that doesn't require managing.</div>
+          </div>
+          <div class="pack-card">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div class="pack-title">Tour Manager</div>
+            <div class="pack-body">A dedicated professional with the group from departure to landing — someone who has the answers before you think of the questions.</div>
+          </div>
+          <div class="pack-card">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div class="pack-title">All Sightseeing</div>
+            <div class="pack-body">Every transfer, entrance ticket, and guided experience is included — windmills to the Eiffel Tower. Nothing to book separately.</div>
+          </div>
+          <div class="pack-card">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+              </svg>
+            </div>
+            <div class="pack-title">24/7 Support</div>
+            <div class="pack-body">Akbar Holidays' team is available before and throughout the trip. Something feels off? Someone picks up.</div>
+          </div>
+          <div class="pack-card">
+            <div class="pack-icon">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4">
+                <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" />
+              </svg>
+            </div>
+            <div class="pack-title">Travel with Twinkle</div>
+            <div class="pack-body">Not curated. Not filtered. Twinkle is there in person — styling, exploring, probably finding the best café in every city before anyone else.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+        <div style="padding: 0px 0 40px;">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:18px;">
+            <span style="font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--rose);">How It Works</span>
+          </div>
+          <h2 style="font-family:'DM Serif Display',serif; font-size:clamp(36px,6vw,62px); font-weight:400; line-height:1.08; letter-spacing:-0.02em; color:var(--ink);">
+            Four simple <em style="font-style:italic; color:var(--rose);">steps</em>
+          </h2>
+        </div>
+
+        <div class="timeline-wrap">
+          <div class="timeline-line"></div>
+          <div class="timeline-steps">
+            <div class="timeline-step">
+              <div class="tl-dot">1</div>
+              <div class="tl-title">Fill the Form</div>
+              <div class="tl-desc">Submit your interest below with your details and travel city</div>
+            </div>
+            <div class="timeline-step">
+              <div class="tl-dot">2</div>
+              <div class="tl-title">Get a Call Back</div>
+              <div class="tl-desc">Akbar Holidays will reach out to share full details and confirm your seat</div>
+            </div>
+            <div class="timeline-step">
+              <div class="tl-dot">3</div>
+              <div class="tl-title">Book & Prep</div>
+              <div class="tl-desc">Complete your booking, visa docs sorted, you start packing</div>
+            </div>
+            <div class="timeline-step">
+              <div class="tl-dot">4</div>
+              <div class="tl-title">Fly with Twinkle</div>
+              <div class="tl-desc">Depart with the group and experience Europe together</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mobile-steps">
+          <div class="mobile-step">
+            <div class="mobile-step-left"><div class="tl-dot">1</div><div class="mobile-connector"></div></div>
+            <div class="mobile-step-body"><div class="tl-title">Fill the Form</div><div class="tl-desc">Submit your interest below with your details and travel city</div></div>
+          </div>
+          <div class="mobile-step">
+            <div class="mobile-step-left"><div class="tl-dot">2</div><div class="mobile-connector"></div></div>
+            <div class="mobile-step-body"><div class="tl-title">Get a Call Back</div><div class="tl-desc">Akbar Holidays will reach out to share full details and confirm your seat</div></div>
+          </div>
+          <div class="mobile-step">
+            <div class="mobile-step-left"><div class="tl-dot">3</div><div class="mobile-connector"></div></div>
+            <div class="mobile-step-body"><div class="tl-title">Book & Prep</div><div class="tl-desc">Complete your booking, visa docs sorted, you start packing</div></div>
+          </div>
+          <div class="mobile-step mobile-step--last">
+            <div class="mobile-step-left"><div class="tl-dot">4</div></div>
+            <div class="mobile-step-body"><div class="tl-title">Fly with Twinkle</div><div class="tl-desc">Depart with the group and experience Europe together</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="apply">
+      <div class="wrap">
+        <div class="card form-section text-wrap">
+          <span class="kicker" style="display:flex;justify-content:center;">Apply now</span>
+          <div class="zoho-wrap">
+            <iframe aria-label='Reserve Your Spot' frameborder="0" style="height:500px;width:99%;border:none;" src='https://forms.zohopublic.in/melangedigital1/form/TwinkleVasishtParisandAmsterdamDiaries/formperma/cImcGQ96aaFbRNzIIRNHqwY8jnPGqAax7FilMPBkznE'></iframe>
+            <p style="font-size:12px;color:var(--faint);text-align:center;margin-top:14px;line-height:1.7;">
+              We will respond within 24 hours. Your booking amount is only requested after your spot is confirmed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer style="margin-bottom: 5%">
+    <div class="wrap">
+      <div class="footer-brand">Paris & Amsterdam Diaries with Twinkle</div>
+      <div class="footer-byline">Tour logistics by Akbar Holidays Pvt. Ltd. | Managed by Mélange Digital | melangedigital.in</div>
+    </div>
+  </footer>
+
+  <script>
+    const heroTop = document.getElementById('heroTop');
+    const stickyCta = document.getElementById('stickyCta');
+    const stickyObs = new IntersectionObserver(([entry]) => {
+      stickyCta.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0.08 });
+    stickyObs.observe(heroTop);
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); revealObs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObs.observe(el));
+  </script>
+</body>
+</html>
